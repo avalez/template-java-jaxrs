@@ -22,13 +22,4 @@
 		<property name="googleService" ref="googleService" />
 	</bean>
 
-	<bean id="googleService" class="org.springframework.security.oauth.examples.tonr.impl.GoogleServiceImpl">
-		<property name="googleRestTemplate">
-			<bean class="org.springframework.security.oauth.consumer.client.OAuthRestTemplate">
-				<constructor-arg ref="google" />
-			</bean>
-		</property>
-
-	</bean>
-
 </beans>

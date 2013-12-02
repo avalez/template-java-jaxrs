@@ -4,8 +4,10 @@
   xmlns:beans="http://www.springframework.org/schema/beans"
   xmlns:oauth="http://www.springframework.org/schema/security/oauth"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
               http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
               http://www.springframework.org/schema/security/oauth http://www.springframework.org/schema/security/spring-security-oauth-1.0.xsd">
 
   <http auto-config='true' access-denied-page="/login.jsp">
@@ -42,5 +44,17 @@
       <oauth:addtionalParameter name="xoauth_displayname" value="Example Application"/>
     </oauth:resource>
   </oauth:resource-details-service>
+
+  <!-- INIT REST COMPONENTS -->
+
+  <context:component-scan base-package="com.example.services" />
+
+  <beans:bean id="googleService" class="org.springframework.security.oauth.examples.tonr.impl.GoogleServiceImpl">
+    <beans:property name="googleRestTemplate">
+      <beans:bean class="org.springframework.security.oauth.consumer.client.OAuthRestTemplate">
+        <beans:constructor-arg ref="google" />
+      </beans:bean>
+    </beans:property>
+  </beans:bean>
 
 </beans:beans>
