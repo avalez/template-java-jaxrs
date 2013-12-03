@@ -16,6 +16,10 @@
           <param-name>jersey.config.server.provider.packages</param-name>
           <param-value>com.example.services</param-value>
       </init-param>
+      <init-param>
+          <param-name>jersey.config.server.provider.classnames</param-name>
+          <param-value>org.codehaus.jackson.jaxrs.JacksonJsonProvider</param-value>
+      </init-param>
   </servlet>
 
   <servlet-mapping>
